@@ -5,7 +5,7 @@ import { StudentsModule } from './students/students.module';
 import { UniversitiesModule } from './universities/universities.module';
 
 @Module({
-  imports: [StudentsModule, UniversitiesModule],
+  imports: [UniversitiesModule, StudentsModule],
   controllers: [AppController],
   providers: [AppService],
 })

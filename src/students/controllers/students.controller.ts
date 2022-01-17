@@ -51,4 +51,11 @@ export class StudentsController {
   delete(@Param('id') id: string) {
     return this.studentsService.remove(id);
   }
+
+  // Obtener Universidad del Estudiante
+  @Get(':id/university')
+  @HttpCode(HttpStatus.ACCEPTED)
+  getUniversity(@Param('id') id: string) {
+    return this.studentsService.findUniversityByStudent(id);
+  }
 }

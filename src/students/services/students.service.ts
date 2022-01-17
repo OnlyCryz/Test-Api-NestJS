@@ -1,10 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Student } from '../entities/student.entity';
+import { University } from '../../universities/entities/university.entity';
 import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dtos';
 import { nanoid } from 'nanoid';
-
+import { UniversitiesService } from './../../universities/services/universities.service';
 @Injectable()
 export class StudentsService {
+  constructor(private universitiesService: UniversitiesService) {}
   // Estudiante de prueba
   private students: Student[] = [
     {
@@ -12,6 +14,14 @@ export class StudentsService {
       name: 'Cristobal Carrion',
       age: 24,
       email: 'cristobal@test.com',
+      university: this.universitiesService.findAll()[0],
+    },
+    {
+      id: nanoid(8),
+      name: 'Eduardo Queupumil',
+      age: 23,
+      email: 'eduardo@test.com',
+      university: this.universitiesService.findAll()[1],
     },
   ];
 
@@ -61,5 +71,11 @@ export class StudentsService {
     }
     this.students.splice(index, 1);
     return true;
+  }
+
+  // Buscar la Universidad del Estudiante
+
+  findUniversityByStudent(id: string): University {
+    return this.findOne(id).university;
   }
 }

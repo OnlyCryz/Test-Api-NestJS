@@ -6,6 +6,8 @@ import {
   IsEmail,
 } from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
+import { University } from './../../universities/entities/university.entity';
+
 export class CreateStudentDto {
   @IsString()
   @IsNotEmpty()
@@ -19,6 +21,8 @@ export class CreateStudentDto {
   @IsEmail()
   @IsNotEmpty()
   readonly email: string;
+
+  readonly university: University;
 }
 
 // PartialType permite que no sea necesario llenar todos los campos que se quieran editar
