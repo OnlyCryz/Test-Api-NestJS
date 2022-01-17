@@ -11,6 +11,10 @@ import {
 } from '@nestjs/common';
 
 import { StudentsService } from '../../services/students/students.service';
+import {
+  CreateStudentDto,
+  UpdateStudentDto,
+} from '../../dtos/students/students.dtos';
 
 @Controller('students')
 export class StudentsController {
@@ -33,15 +37,15 @@ export class StudentsController {
   // Crear Estudiante
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  create(@Body() student: any) {
-    return this.studentsService.create(student);
+  create(@Body() body: CreateStudentDto) {
+    return this.studentsService.create(body);
   }
 
   // Editar Estudiante
   @Put(':id')
   @HttpCode(HttpStatus.OK)
-  update(@Param('id') id: string, @Body() data: any) {
-    return this.studentsService.update(id, data);
+  update(@Param('id') id: string, @Body() body: UpdateStudentDto) {
+    return this.studentsService.update(id, body);
   }
 
   // Eliminar Estudiante

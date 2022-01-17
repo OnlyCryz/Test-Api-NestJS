@@ -1,9 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Student } from '../../entities/student.entity';
+import {
+  CreateStudentDto,
+  UpdateStudentDto,
+} from '../../dtos/students/students.dtos';
 import { nanoid } from 'nanoid';
 
 @Injectable()
 export class StudentsService {
+  // Estudiante de prueba
   private students: Student[] = [
     {
       id: nanoid(8),
@@ -28,23 +33,23 @@ export class StudentsService {
   }
 
   // Crear un nuevo Estudiante
-  create(student: any) {
+  create(body: CreateStudentDto) {
     const newEstudent = {
       id: nanoid(8),
-      ...student,
+      ...body,
     };
     this.students.push(newEstudent);
     return newEstudent;
   }
 
   // Editar un Estudiante
-  update(id: string, data: any) {
+  update(id: string, body: UpdateStudentDto) {
     const student = this.findOne(id);
     if (student) {
       const index = this.students.findIndex((student) => student.id === id);
       this.students[index] = {
         ...student,
-        ...data,
+        ...body,
       };
       return this.students[index];
     }
