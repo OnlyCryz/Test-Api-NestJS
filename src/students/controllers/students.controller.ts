@@ -10,11 +10,8 @@ import {
   HttpCode,
 } from '@nestjs/common';
 
-import { StudentsService } from '../../services/students/students.service';
-import {
-  CreateStudentDto,
-  UpdateStudentDto,
-} from '../../dtos/students/students.dtos';
+import { StudentsService } from '../services/students.service';
+import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dtos';
 
 @Controller('students')
 export class StudentsController {

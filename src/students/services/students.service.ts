@@ -1,9 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Student } from '../../entities/student.entity';
-import {
-  CreateStudentDto,
-  UpdateStudentDto,
-} from '../../dtos/students/students.dtos';
+import { Student } from '../entities/student.entity';
+import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dtos';
 import { nanoid } from 'nanoid';
 
 @Injectable()
