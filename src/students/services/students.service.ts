@@ -22,11 +22,11 @@ export class StudentsService {
 
   // Buscar al Estudiante por ID
   findOne(id: string) {
-    const product = this.students.find((student) => student.id === id);
-    if (!product) {
+    const student = this.students.find((student) => student.id === id);
+    if (!student) {
       throw new NotFoundException(`El Estudiante: ${id}, no fue encontrado`);
     }
-    return product;
+    return student;
   }
 
   // Crear un nuevo Estudiante
