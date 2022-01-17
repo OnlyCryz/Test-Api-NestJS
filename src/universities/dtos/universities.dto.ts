@@ -1,14 +1,17 @@
 import { IsNotEmpty, IsString } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
 export class CreateUniversityDto {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly name: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly direction: string;
 
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly city: string;

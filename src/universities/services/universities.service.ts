@@ -3,7 +3,7 @@ import { University } from '../entities/university.entity';
 import {
   CreateUniversityDto,
   UpdateUniversityDto,
-} from '../dtos/universities.dtos';
+} from '../dtos/universities.dto';
 import { nanoid } from 'nanoid';
 
 @Injectable()

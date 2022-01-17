@@ -5,23 +5,27 @@ import {
   IsPositive,
   IsEmail,
 } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
-import { University } from './../../universities/entities/university.entity';
+import { PartialType, ApiProperty } from '@nestjs/swagger';
+import { University } from '../../universities/entities/university.entity';
 
 export class CreateStudentDto {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   readonly name: string;
 
+  @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
   @IsPositive()
   readonly age: number;
 
+  @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
   readonly email: string;
 
+  @ApiProperty()
   readonly university: University;
 }
 

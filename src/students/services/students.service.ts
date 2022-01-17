@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Student } from '../entities/student.entity';
 import { University } from '../../universities/entities/university.entity';
-import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dtos';
+import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dto';
 import { nanoid } from 'nanoid';
 import { UniversitiesService } from './../../universities/services/universities.service';
 @Injectable()

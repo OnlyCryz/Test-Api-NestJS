@@ -14,7 +14,7 @@ import { UniversitiesService } from '../services/universities.service';
 import {
   CreateUniversityDto,
   UpdateUniversityDto,
-} from '../dtos/universities.dtos';
+} from '../dtos/universities.dto';
 
 @Controller('universities')
 export class UniversitiesController {

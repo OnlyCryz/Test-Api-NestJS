@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 
 import { StudentsService } from '../services/students.service';
-import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dtos';
+import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dto';
 
 @Controller('students')
 export class StudentsController {
