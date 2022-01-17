@@ -52,15 +52,15 @@ export class StudentsService {
   // Editar un Estudiante
   update(id: string, body: UpdateStudentDto) {
     const student = this.findOne(id);
-    if (student) {
-      const index = this.students.findIndex((student) => student.id === id);
-      this.students[index] = {
-        ...student,
-        ...body,
-      };
-      return this.students[index];
+    if (!student) {
+      throw new NotFoundException(`El Estudiante: ${id}, no fue encontrado`);
     }
-    return null;
+    const index = this.students.findIndex((student) => student.id === id);
+    this.students[index] = {
+      ...student,
+      ...body,
+    };
+    return this.students[index];
   }
 
   // Eliminar un Estudiante
@@ -76,6 +76,12 @@ export class StudentsService {
   // Buscar la Universidad del Estudiante
 
   findUniversityByStudent(id: string): University {
-    return this.findOne(id).university;
+    const university = this.findOne(id).university;
+    if (!university) {
+      throw new NotFoundException(
+        `No se encontro la Univerdidad del Estudiante: ${id}`,
+      );
+    }
+    return university;
   }
 }

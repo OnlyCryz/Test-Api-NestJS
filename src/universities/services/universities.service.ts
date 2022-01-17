@@ -53,17 +53,17 @@ export class UniversitiesService {
   // Editar una Universidad
   update(id: string, body: UpdateUniversityDto) {
     const university = this.findOne(id);
-    if (university) {
-      const index = this.universities.findIndex(
-        (university) => university.id === id,
-      );
-      this.universities[index] = {
-        ...university,
-        ...body,
-      };
-      return this.universities[index];
+    if (!university) {
+      throw new NotFoundException(`La universidad: ${id}, no fue encontrada`);
     }
-    return null;
+    const index = this.universities.findIndex(
+      (university) => university.id === id,
+    );
+    this.universities[index] = {
+      ...university,
+      ...body,
+    };
+    return this.universities[index];
   }
 
   // Eliminar una Universidad
