@@ -1,12 +1,20 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Student } from '../entities/student.entity';
 import { University } from '../../universities/entities/university.entity';
+import { UniversitiesService } from './../../universities/services/universities.service';
 import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dto';
 import { nanoid } from 'nanoid';
-import { UniversitiesService } from './../../universities/services/universities.service';
 @Injectable()
 export class StudentsService {
-  constructor(private universitiesService: UniversitiesService) {}
+  constructor(
+    @Inject(forwardRef(() => UniversitiesService))
+    private universitiesService: UniversitiesService,
+  ) {}
   // Estudiante de prueba
   private students: Student[] = [
     {

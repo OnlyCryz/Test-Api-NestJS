@@ -1,5 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  forwardRef,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { University } from '../entities/university.entity';
+import { Student } from '../../students/entities/student.entity';
+import { StudentsService } from './../../students/services/students.service';
 import {
   CreateUniversityDto,
   UpdateUniversityDto,
@@ -8,6 +15,10 @@ import { nanoid } from 'nanoid';
 
 @Injectable()
 export class UniversitiesService {
+  constructor(
+    @Inject(forwardRef(() => StudentsService))
+    private studentsService: StudentsService,
+  ) {}
   // Universidades de prueba
   private universities: University[] = [
     {
@@ -76,5 +87,13 @@ export class UniversitiesService {
     }
     this.universities.splice(index, 1);
     return true;
+  }
+
+  // Buscar los Estudiantes de la Universidad
+  findStudentsByUniversity(id: string): Student[] {
+    const students = this.studentsService
+      .findAll()
+      .filter((student) => student.university.id === id);
+    return students;
   }
 }

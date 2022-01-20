@@ -9,7 +9,6 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
-
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { UniversitiesService } from '../services/universities.service';
 import {
@@ -60,5 +59,13 @@ export class UniversitiesController {
   @HttpCode(HttpStatus.OK)
   delete(@Param('id') id: string) {
     return this.universitiesService.remove(id);
+  }
+
+  // Obtener Estudiantes de la Universidad
+  @Get(':id/students')
+  @ApiOperation({ summary: 'Obtener Estudiantes de la Universidad' })
+  @HttpCode(HttpStatus.ACCEPTED)
+  getStudents(@Param('id') id: string) {
+    return this.universitiesService.findStudentsByUniversity(id);
   }
 }
