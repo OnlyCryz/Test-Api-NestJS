@@ -58,11 +58,11 @@ export class SubjectsController {
     return this.subjectsService.remove(id);
   }
 
-  // Obtener Estudiantes de la Universidad
-  // @Get(':id/students')
-  // @ApiOperation({ summary: 'Obtener Estudiantes de la Universidad' })
-  // @HttpCode(HttpStatus.ACCEPTED)
-  // getStudents(@Param('id') id: string) {
-  //   return this.subjectsService.findStudentsByUniversity(id);
-  // }
+  // Obtener Estudiantes de la Asignatura
+  @Get(':id/students')
+  @ApiOperation({ summary: 'Obtener Estudiantes de la Asignatura' })
+  @HttpCode(HttpStatus.ACCEPTED)
+  getStudents(@Param('id') id: string) {
+    return this.subjectsService.findStudentsBySubject(id);
+  }
 }

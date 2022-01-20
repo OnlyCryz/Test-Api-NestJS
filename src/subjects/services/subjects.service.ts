@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Subject } from '../entities/subject.entity';
 import { CreateSubjectDto, UpdateSubjectDto } from '../dtos/subjects.dto';
-//import { Student } from '../../students/entities/student.entity';
+import { Student } from '../../students/entities/student.entity';
 import { StudentsService } from './../../students/services/students.service';
 import { nanoid } from 'nanoid';
 
@@ -82,10 +82,10 @@ export class SubjectsService {
   }
 
   // Buscar los Estudiantes de la Asignatura
-  // findStudentsBySubject(id: string): Student[] {
-  //   const students = this.studentsService
-  //     .findAll()
-  //     .filter((student) => student.subjects.id === id);
-  //   return students;
-  // }
+  findStudentsBySubject(id: string): Student[] {
+    const students = this.studentsService.findAll().filter((student) => {
+      return student.subjects.map((subject) => subject.id === id);
+    });
+    return students;
+  }
 }
