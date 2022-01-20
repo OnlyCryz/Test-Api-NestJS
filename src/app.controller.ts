@@ -7,6 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return 'Documentacion en: http://localhost:3000/docs/';
+    return 'Documentacion en local: http://localhost:3000/docs/ - Documentacion en Produccion: https://frozen-bastion-15010.herokuapp.com/docs/';
   }
 }
