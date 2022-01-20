@@ -6,7 +6,9 @@ import {
 } from '@nestjs/common';
 import { Student } from '../entities/student.entity';
 import { University } from '../../universities/entities/university.entity';
+import { Subject } from '../../subjects/entities/subject.entity';
 import { UniversitiesService } from './../../universities/services/universities.service';
+import { SubjectsService } from './../../subjects/services/subjects.service';
 import { CreateStudentDto, UpdateStudentDto } from '../dtos/students.dto';
 import { nanoid } from 'nanoid';
 @Injectable()
@@ -14,6 +16,8 @@ export class StudentsService {
   constructor(
     @Inject(forwardRef(() => UniversitiesService))
     private universitiesService: UniversitiesService,
+    @Inject(forwardRef(() => SubjectsService))
+    private subjectsService: SubjectsService,
   ) {}
   // Estudiante de prueba
   private students: Student[] = [
@@ -23,6 +27,7 @@ export class StudentsService {
       age: 24,
       email: 'cristobal@test.com',
       university: this.universitiesService.findAll()[0],
+      subjects: this.subjectsService.findAll(),
     },
     {
       id: nanoid(8),
@@ -30,6 +35,7 @@ export class StudentsService {
       age: 23,
       email: 'eduardo@test.com',
       university: this.universitiesService.findAll()[1],
+      subjects: this.subjectsService.findAll(),
     },
   ];
 
@@ -90,5 +96,16 @@ export class StudentsService {
       );
     }
     return university;
+  }
+
+  // Buscar las Asignaturas del Estudiante
+  findSubjectsByStudent(id: string): Subject[] {
+    const subjects = this.findOne(id).subjects;
+    if (!subjects) {
+      throw new NotFoundException(
+        `No se encontraron las Asignaturas del Estudiante: ${id}`,
+      );
+    }
+    return subjects;
   }
 }

@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { PartialType, ApiProperty } from '@nestjs/swagger';
 import { University } from '../../universities/entities/university.entity';
+import { Subject } from './../../subjects/entities/subject.entity';
 
 export class CreateStudentDto {
   @ApiProperty()
@@ -27,6 +28,9 @@ export class CreateStudentDto {
 
   @ApiProperty()
   readonly university: University;
+
+  @ApiProperty()
+  readonly subjects: Subject[];
 }
 
 // PartialType permite que no sea necesario llenar todos los campos que se quieran editar

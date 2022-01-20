@@ -65,4 +65,12 @@ export class StudentsController {
   getUniversity(@Param('id') id: string) {
     return this.studentsService.findUniversityByStudent(id);
   }
+
+  // Obtener Asignaturas del Estudiante
+  @Get(':id/subjects')
+  @ApiOperation({ summary: 'Obtener Asignaturas del Estudiante' })
+  @HttpCode(HttpStatus.ACCEPTED)
+  getSubjects(@Param('id') id: string) {
+    return this.studentsService.findSubjectsByStudent(id);
+  }
 }
